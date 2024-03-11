@@ -12,12 +12,14 @@ The goal of this project is to build a station-to-station path-finding system fo
 
 - [How to read the .mat file in Python.](https://stackoverflow.com/questions/874461/read-mat-files-in-python)
 
+3. There's already a organized file about the data of the stations, we can use this directly.
 - [Organized data in txt file.](https://github.com/mincongzhang/StationPathFinder/blob/master/LondonTube/LondonTube/stations.txt)
 
 ### Write the Code
 1. **Load Data:**
-   - Read the `.mat` data file, extract the content and convert in to a `.txt` file.
-   - Each station could be a node, and make the adjacent station node to a list.
+   - Use pandas to read the data in the txt file, and convert it to two dictionaries.
+   - One dictionary with ID of each station as key, and the name of each station as value.
+   - Other dictionary with the name of each station as key, and the ID as key.
 2. **Collect User Input:**
    - Handle user input to specify the starting station and the end station.
    - Handle the situation if the user input the wrong name of the station.
