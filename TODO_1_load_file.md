@@ -2,21 +2,21 @@
 
 **Explanation:**
 1. If `index_co`l is not assigned `False`, the column `ID` will not be recognize, instead, it will be treated as index in the table.
-2. When reading the file using pandas, the column `TubeNeighbour` and `TrainNeighbour` will be convert to a string, e.g.:
+2. When reading the file using pandas, the column `TubeNeighbour` and `TrainNeighbour` will be convert to a string, for example:
 ```py
 # Data in the file:
 ID|Name|TubeNeighbour|TrainNeighbour
 0|LiverpoolStreetStation|1,2,3,4,6,7|2,3,5,7,14,15
 1|Bank(Monument)|0,2,5,8,9,10,11,12|2,3,4,8,11,12
 
-# After reading by pandas they will be like:
+# After reading by pandas the neighbour will be displayed like:
 "1,2,3,4,6,7"
 "2,3,5,7,14,15"
 "0,2,5,8,9,10,11,12"
 "2,3,4,8,11,12"
 ```
 But we want each neighbour station to be stored separately as an ID in the dictionary `m_id_neighbours_dict`, we can use dictionary comprehension to convert strings to separate ID integers.
-3. Use `@classmethod` to access the class attributes without defining an instance.
+3. Use `@classmethod` to access the class attributes (variables that belongs to a class rather than to instances of the class, also means variables are defined outside of any method within the class, including the `__init__` method.) without defining an instance.
 
 
 ```py
