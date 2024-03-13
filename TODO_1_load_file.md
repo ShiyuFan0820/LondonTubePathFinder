@@ -10,6 +10,7 @@ class StationInfo:
         self.m_data = pd.read_csv(filename, delimiter="|", index_col=False)
         self.m_id_to_name_dict = dict(zip(self.m_data["ID"], self.m_data["Name"]))
         self.m_name_to_id_dict = dict(zip(self.m_data["Name"], self.m_data["ID"]))
-        self.m_id_neighbours_dict =
+        self.m_id_neighbours_dict = {row["ID"]: [row["TubeNeighbour"], row["TrainNeighbour"]] for index, row in self.m_data.iterrows()}
+
 
 ```
