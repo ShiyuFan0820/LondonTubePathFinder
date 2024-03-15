@@ -50,7 +50,8 @@ class StationFinder:
 ```
 
 2. This code uses BFS to find the paths between 2 stations.
-   - First creating a tree, whose root is the `from_station` node, every node has its own instance's attributes, `m_id` stores the id information of the node, `m_neighbours` is a list, stores all the neighbour nodes, `m_parent` stores the parent of this node, `self.InsertNeighbours()` will call this method to add all neighbours and complete the tree strucutre. The reason why `m_parent` is needed is that stations information organized in `station.txt` has no direction, e.g. station1 and station2 is connected, so station2 is in the neighbour list of station1 and station1 is also in the neighbour list of station2, when we want to creat a tree whose root is station1, we need to add station2 node in the `m_neighbours` of station1, and we also need to find the neighbours of station2 and add them as nodes to the `m_neighbours` of station2, so we need to track the direction to prevent adding station1 to the `m_neighbours` of station2. 
+- First creating a tree, whose root is the `from_station` node, every node has its own instance's attributes, `m_id` stores the id information of the node, `m_neighbours` is a list, stores all the neighbour nodes, `m_parent` stores the parent of this node, `self.InsertNeighbours()` will call this method to add all neighbours and complete the tree strucutre. The reason why `m_parent` is needed is that stations information organized in `station.txt` has no direction, e.g. station1 and station2 is connected, so station2 is in the neighbour list of station1 and station1 is also in the neighbour list of station2, when we want to creat a tree whose root is station1, we need to add station2 node in the `m_neighbours` of station1, and we also need to find the neighbours of station2 and add them as nodes to the `m_neighbours` of station2, so we need to track the direction to prevent adding station1 to the `m_neighbours` of station2.
+- 
 ```py
 from LoadData import StationInfo
 class StationNode:
@@ -68,33 +69,59 @@ class StationNode:
 
     def GetNeighbours(self):
         return self.m_neighbours
+    
+    def GetStationID(self):
+        return self.m_id
 
 
 class StationTree:
     def __init__(self, from_station_id):
         self.m_from_station_node = StationNode(from_station_id)
+        
+    def GetStartNode(self):
+        return self.m_from_station_node
 
     def GetPathsTo(self, to_station_id):
         queue = []
         paths = []
-        start_station = self.m_from_station_node
-        neighbours = start_station.GetNeighbours()
-        if neighbours:
-            for neighbour in neighbours:
-                queue.append([start_station, neighbour])
+        start_station_node = self.GetStartNode()
+        neighbour_nodes = start_station_node.GetNeighbours()
+        if neighbour_nodes:
+            for neighbour_node in neighbour_nodes:
+                queue.append([start_station_node, neighbour_node])
         while queue:
             path = queue.pop(0)
-            if path[-1].m_id == to_station_id:
-                path = [station_node.m_id for station_node in path]
+            if path[-1].GetStationID == to_station_id:
+                path = [station_node.GetStationID for station_node in path]
                 paths.append(path)
-            for neighbour in path[-1].GetNeighbours():
-                queue.append(path + [neighbour])
+            else:
+                for neighbour_node in path[-1].GetNeighbours():
+                    queue.append(path + [neighbour_node])
         return paths
 
 
 class StationFinder:
-    def GetPaths(self, from_station_id, to_station_id):
-        pass
+    @classmethod
+    def GetPaths(cls, from_station_id, to_station_id, from_station, to_station):
+        """
 
+        :param from_station_id: id of the start station
+        :param to_station_id:  id of the end station
+        :param from_station: name of the start station
+        :param to_station:  name of the end station
+        :return: return all the possible paths
+        """
+        station_tree = StationTree(from_station_id)
+        paths = station_tree.GetPathsTo(to_station_id)
+        cls.DisplayPaths(from_station, to_station, paths)
+    @classmethod
+    def DisplayPaths(cls, from_station, to_station, paths):
+        if paths:
+            for path in paths:
+                path = [StationInfo.GetNameFromID(station_node.m_id) for station_node in path]
+                print("One possible path:")
+                print(f"{"-->".join(path)}")
+        else:
+            print(f"Sorry, we didn't find a path from {from_station} to {to_station}.")
 
 ```
