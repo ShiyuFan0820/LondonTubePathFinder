@@ -51,7 +51,8 @@ class StationFinder:
 
 2. This code uses BFS to find the paths between 2 stations.
 - First creating a tree, whose root is the `from_station` node, every node has its own instance's attributes, `m_id` stores the id information of the node, `m_neighbours` is a list, stores all the neighbour nodes, `m_parent` stores the parent of this node, `self.InsertNeighbours()` will call this method to add all neighbours and complete the tree strucutre. The reason why `m_parent` is needed is that stations information organized in `station.txt` has no direction, e.g. station1 and station2 is connected, so station2 is in the neighbour list of station1 and station1 is also in the neighbour list of station2, when we want to creat a tree whose root is station1, we need to add station2 node in the `m_neighbours` of station1, and we also need to find the neighbours of station2 and add them as nodes to the `m_neighbours` of station2, so we need to track the direction to prevent adding station1 to the `m_neighbours` of station2.
-- 
+- After creating the tree we can use BFS to find all the possible paths, define a `queue` to record all the paths we will visit, instead of just enqueuing the nodes we are going to visit, we enqueue all the nodes before this node to the queue as a list to keep tracking the path, everytime we dequeue a path list from the queue, check the last element in the path list, if it is equal to the `to_station`, this means we find a path successfully, if not we keep appending neighours to the list path and enqueue it till we find a path or till there is no neighours of the last element, and define a `paths` to record all the possible paths to the `to_station`.
+- After finding all possible paths, we call `DisplayPaths` to print the paths bewteen two stations, because `paths` only stores the id of the station, we need to convert all ids to station names. 
 ```py
 from LoadData import StationInfo
 class StationNode:
@@ -69,7 +70,7 @@ class StationNode:
 
     def GetNeighbours(self):
         return self.m_neighbours
-    
+
     def GetStationID(self):
         return self.m_id
 
@@ -77,7 +78,7 @@ class StationNode:
 class StationTree:
     def __init__(self, from_station_id):
         self.m_from_station_node = StationNode(from_station_id)
-        
+
     def GetStartNode(self):
         return self.m_from_station_node
 
@@ -91,8 +92,8 @@ class StationTree:
                 queue.append([start_station_node, neighbour_node])
         while queue:
             path = queue.pop(0)
-            if path[-1].GetStationID == to_station_id:
-                path = [station_node.GetStationID for station_node in path]
+            if path[-1].GetStationID() == to_station_id:
+                path = [station_node.GetStationID() for station_node in path]
                 paths.append(path)
             else:
                 for neighbour_node in path[-1].GetNeighbours():
@@ -113,15 +114,27 @@ class StationFinder:
         """
         station_tree = StationTree(from_station_id)
         paths = station_tree.GetPathsTo(to_station_id)
-        cls.DisplayPaths(from_station, to_station, paths)
-    @classmethod
-    def DisplayPaths(cls, from_station, to_station, paths):
         if paths:
-            for path in paths:
-                path = [StationInfo.GetNameFromID(station_node.m_id) for station_node in path]
-                print("One possible path:")
-                print(f"{"-->".join(path)}")
+            cls.DisplayPaths(paths)
+            cls.ShortestPath(paths)
         else:
             print(f"Sorry, we didn't find a path from {from_station} to {to_station}.")
+
+    @classmethod
+    def DisplayPaths(cls, paths):
+        shortest_paths = []
+        for path in paths:
+            path = [StationInfo.GetNameFromID(station_node.GetStationID()) for station_node in path]
+            print("One possible path:")
+            print(f"{"-->".join(path)}")
+            if len(shortest_paths) != 0:
+                if len(shortest_paths[0]) > len(path):
+                    shortest_paths.pop()
+                shortest_paths.append(path)
+            else:
+                shortest_paths.append(path)
+        for shortest_path in shortest_paths:
+            print("Shortest path:")
+            print(f"{"-->".join(shortest_path)}")
 
 ```
