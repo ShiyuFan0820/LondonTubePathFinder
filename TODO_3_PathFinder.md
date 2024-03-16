@@ -1,3 +1,4 @@
+# Code
 1. This code actually uses the DFS to find the path, it recursively call the `GetPaths` method, everytime it pass a children of the previous station node until the children node is equal to the station the user wants to go, if the `paths` is empty means that there is no path from the `from_station` to the `to_station`.
 ```py
 from LoadData import StationInfo
@@ -138,3 +139,8 @@ class StationFinder:
             print(f"{"-->".join(shortest_path)}")
 
 ```
+
+# Issues
+
+1. When I ran the `GetPaths` in `main.py`, it notified me `RecursionError: maximum recursion depth exceeded` when it generates the `InsertNeighbours`.
+
