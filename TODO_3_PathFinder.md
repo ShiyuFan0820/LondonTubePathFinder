@@ -145,6 +145,6 @@ class StationFinder:
 1. When I ran the `GetPaths` in `main.py`, it notified me `RecursionError: maximum recursion depth exceeded` when it called the `InsertNeighbours` recursively.
 
 <div align=center>
-<img width="600" alt="image" src="https://github.com/ShiyuFan0820/LondonTubePathFinder/assets/149340606/c6f03571-4362-405b-b345-2c6d156a36b5">
+<img width="550" alt="image" src="https://github.com/ShiyuFan0820/LondonTubePathFinder/assets/149340606/c6f03571-4362-405b-b345-2c6d156a36b5">
 </div>
 
