@@ -1,5 +1,4 @@
-The code is:
-```py
+
 # Load file
 ## import StationInfo from LoadData
 ## import StationFinder from PathFinder
@@ -20,5 +19,5 @@ while True:
         continue
     ## Use StationFinder to find the path
     StationFinder.GetPaths(from_station_id, to_station_id, from_station, to_station)
-    ```
+    
     
