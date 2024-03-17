@@ -17,3 +17,8 @@ while True:
         continue
     ## Use StationFinder to find the path
     StationFinder.GetPaths(from_station_id, to_station_id, from_station, to_station)
+    
+    ## Ask if the user want to find another path
+    if_continue = input("Would you like to use our service again? Yes or No:\n").lower()
+    if if_continue == "no":
+        break
