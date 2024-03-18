@@ -17,7 +17,8 @@ The goal of this project is to build a station-to-station path-finding system fo
 
 ### Write the Code
 1. **Load Data:**
-- Use pandas to read the data in the txt file, and convert it to three dictionaries.
+- Find the right path of the stations file, write a class which can convert and return the formated dictionaries of stations information by passing the file name.
+- In side the class, use pandas to read the data in the txt file, and convert it to three dictionaries.
 - One dictionary with ID of each station as key, and the name of each station as value.
 - Another dictionary with the name of each station as key, and the ID as value.
 - The last dictionary with ID of each station as key, and its neighbours as value.
