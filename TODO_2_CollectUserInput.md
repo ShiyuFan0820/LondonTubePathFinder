@@ -16,4 +16,4 @@ while True:
 ```
 
 # Issues
-1. What if the user input `AldgateEast` as `Aldgate East` or `aldgate east`, the code doesn't handle these two situation, how can we verify the validity of input?
+1. What if the user input `AldgateEast` as `Aldgate East` or `aldgate east` or the user just typo a letter, the code doesn't handle these situations, how can we verify the validity of input?
