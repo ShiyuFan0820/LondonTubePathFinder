@@ -136,6 +136,8 @@ At the beginning I wanted to create a tree by defining `StationTree` and `Statio
 
 Then I realise all station IDs and their neighbours are stored in a dictionary using the class in `LoadData`, this means they are already connected to each other, so I don't need to create a tree to connect them again.
 
-2. 
+2. Use a hashset to store all visited stations, this might not be able to find all the possible paths.
+
+If only track the visited stations, skip to the next neighbour as long as the station is already visited, it can only return one path, this is because the end station may be a neighbour of many stations, when it is traversing one of the paths, this end station will be added in the visited hashset, so when it traverse another one of the paths, as this station is already in the visited list, this path will be skipped, so I add one more condition, if a station is already visited, but it is equal to the end station, it can also be added in the path.
 
 
