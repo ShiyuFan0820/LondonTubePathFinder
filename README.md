@@ -1,4 +1,4 @@
-# LondonTubePathFinder
+# Shortest Path In London Underground
 
 The goal of this project is to build a station-to-station path-finding system for London tube and find the shortest between two stations.
 
