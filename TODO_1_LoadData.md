@@ -34,7 +34,7 @@ class StationInfo:
     def LoadData(cls, filename):
         """
 
-        :param filename: The name/path of the file.
+        :param filename: The path of the file.
         """
         data = pd.read_csv(filename, delimiter="|", index_col=False)
         cls.m_name_to_id_dict = dict(zip(data["Name"], data["ID"]))
