@@ -43,29 +43,39 @@ class StationFinder:
 
 
     @classmethod
-    def DisplayPaths(cls, paths):
+    def DisplayAllPaths(cls, paths):
         """
 
         :param paths: A list include all possible paths.
-        :return: Pint all possible paths and print a shortest path.
+        :return: Pint all possible paths.
         """
-        if paths:
-            shortest_paths = []
-            for path in paths:
-                path = [StationInfo.GetNameFromID(id) for id in path]
-                print("------One possible path------")
-                print(f"{"-->".join(path)}\n")
-                if len(shortest_paths) == 0 or len(shortest_paths[0]) == len(path):
-                    shortest_paths.append(path)
-                elif len(shortest_paths[0]) > len(path):
-                    shortest_paths.pop()
-                    shortest_paths.append(path)
-            for shortest_path in shortest_paths:
-                print("------Shortest path------")
-                print(f"{"-->".join(shortest_path)}\n")
-            return
-        print(f"Sorry, we didn't find a path, please try other station.")
+        for path in paths:
+            path = [StationInfo.GetNameFromID(id) for id in path]
+            print("------One possible path------")
+            print(f"{"-->".join(path)}\n")
         return
 
+    @classmethod
+    def ShortestPath(cls, paths):
+        """
 
+        :param paths: A list of all possible paths.
+        :return: The shortest path.
+        """
+        shortest_paths = []
+        for path in paths:
+            path = [StationInfo.GetNameFromID(id) for id in path]
+            if len(shortest_paths) == 0 or len(shortest_paths[0]) == len(path):
+                shortest_paths.append(path)
+            elif len(shortest_paths[0]) > len(path):
+                shortest_paths.pop()
+                shortest_paths.append(path)
+        return shortest_paths
+
+    @classmethod
+    def DisplayShortestPath(cls, shortest_path):
+        for path in shortest_path:
+            print("------Shortest path------")
+            print(f"{"-->".join(path)}\n")
+        return
 
