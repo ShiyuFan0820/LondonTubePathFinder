@@ -8,8 +8,9 @@ filename = "/Users/fanfan/Downloads/200-Learning/250-Com/Pycharm/pythonProject/L
 ## Pass the file to StationInfo to convert the txt file to dictionary
 StationInfo.LoadData(filename)
 
+
 while True:
-    # Collect user from_station and to_station
+    # Collect user from_station and to_station from UI input
     from_station = input("Where is your start station? (Example input: AldgateEast): \n" )
     to_station = input("Where you want to go? (Example input: AldgateEast): \n")
 
@@ -19,7 +20,12 @@ while True:
         continue
     ## Use StationFinder to find the path
     paths = StationFinder.GetPaths(from_station, to_station)
-    StationFinder.DisplayPaths(paths)
+    if paths:
+        StationFinder.DisplayAllPaths(paths)
+        shortest_path = StationFinder.ShortestPath(paths)
+        StationFinder.DisplayShortestPath(shortest_path)
+    else:
+        print("Sorry, no path found.")
 
     ## Ask if the user want to find another path
     if_continue = input("Would you like to use our service again? Yes or No:\n").lower()
