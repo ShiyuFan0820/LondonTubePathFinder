@@ -8,7 +8,7 @@ from PathFinder import StationFinder
 filename = "/Users/fanfan/Downloads/200-Learning/250-Com/Pycharm/pythonProject/LondonTube/stations.txt"
 ## Pass the file to StationInfo to convert the txt file to dictionary
 StationInfo.LoadData(filename)
-
+background_img = "background.png"
 
 class PathFinderUI:
     # Create a UI window
@@ -20,7 +20,8 @@ class PathFinderUI:
         self.m_window.title("Shortest Path Finder")
         self.m_window.minsize(width=800, height=600)
         self.m_canvas = self.CreateCanvas()
-        self.m_bg_img = PhotoImage(file="background.png")
+        # Find a picture relats to underground as the background picture, here I use the screenshoot of the London Tube.
+        self.m_bg_img = PhotoImage(file=background_img)
         self.m_from_station_label = Label(text="Start Station:", width=16, font=(self.m_font, 20), bg=self.m_color_bg)
         self.m_to_station_label = Label(text="End Station:", width=16, font=(self.m_font, 20), bg=self.m_color_bg)
         self.m_from_station_entry = Entry(width=20)
