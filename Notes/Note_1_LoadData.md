@@ -1,4 +1,4 @@
-# TODO 1: Write A Class To Load Data File By Passing File To It
+# Note 1: Write A Class To Load Data File By Passing File To It
 
 **Explanation:**
 1. If `index_col` is not assigned `False`, the column `ID` will not be recognize, instead, it will be treated as index in the table.
