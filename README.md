@@ -4,7 +4,8 @@ This project aims to develop a station-to-station path-finding system for the Lo
 
 **Example:**
 
-[<img width="600" alt="image" src="https://github.com/ShiyuFan0820/ShortestPathInLondonUnderground/assets/149340606/f7abec7b-4aae-4331-ae51-fe64c471b2cd">](https://youtu.be/k-fayKRtdsg)
+[<img width="600" alt="image" src="https://github.com/ShiyuFan0820/ShortestPathInLondonUnderground/assets/149340606/4d187282-bbd5-432a-87dc-00db08e1b0ce">
+](https://youtu.be/yydjhGLAu-Q)
 
 ## Usage
 
