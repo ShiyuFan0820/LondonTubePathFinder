@@ -22,6 +22,7 @@ class PathFinderUI:
         self.m_search_button = Button(text="Search", font=(self.m_font, 20), command=self.SearchPath, bg=self.m_bg_color)
         self.SetCanvas()
         # This m_display_path_id is to store the id of the previous displayed shortest path, when generate a path again, the previous display should be deleted.
+        self.m_display_path_found_title_id = None
         self.m_display_path_id = None
         self.m_window.mainloop()
 
@@ -54,6 +55,8 @@ class PathFinderUI:
         if from_station not in StationInfo.GetNameIDDict() or to_station not in StationInfo.GetNameIDDict():
             messagebox.showinfo(title="Error", message="Your station input is not correct, try to input again.")
             self.ResetEntry()
+            self.m_canvas.delete(self.m_display_path_id)
+            self.m_canvas.delete(self.m_display_path_found_title_id)
         else:
             ## Use StationFinder to find the path
             paths = StationFinder.GetPaths(from_station, to_station)
@@ -71,7 +74,7 @@ class PathFinderUI:
         for path in shortest_path:
             path = [StationInfo.GetNameFromID(id) for id in path]
             display += "One shortest path:\n" + f"{"🚇-->".join(path)}🚇\n"
-        self.m_canvas.create_text(400, 350, text=f"Shortest Path Found!", font=(self.m_font, 20, "bold"), fill=self.m_font_color)
+        self.m_display_path_found_title_id = self.m_canvas.create_text(400, 350, text=f"Shortest Path Found!", font=(self.m_font, 20, "bold"), fill=self.m_font_color)
         self.m_display_path_id = self.m_canvas.create_text(100, 370, text=f"{display}", font=(self.m_font, 20), fill=self.m_font_color, anchor="nw", width=550)
 
     def ResetEntry(self):
@@ -86,4 +89,3 @@ if __name__ == "__main__":
     # Find a picture relats to underground as the background picture, here I use the screenshoot of the London Tube.
     background_img = "background.png"
     ui = PathFinderUI()
-
