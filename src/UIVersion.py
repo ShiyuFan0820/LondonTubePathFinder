@@ -6,10 +6,10 @@ from PathFinder import StationFinder
 
 class PathFinderUI:
     # Create a UI window
-    def __init__(self, font="Courier", font_color="#0818a4", bg_color="white", bg_img="background.png"):
+    def __init__(self, font="Courier", font_colour="#0818a4", bg_colour="white", bg_img="background.png"):
         self.m_font = font
-        self.m_font_color = font_color
-        self.m_bg_color = bg_color
+        self.m_font_color = font_colour
+        self.m_bg_color = bg_colour
         self.m_window = Tk()
         self.m_window.title("Shortest Path Finder")
         self.m_window.minsize(width=800, height=600)
