@@ -43,15 +43,15 @@ class StationFinder:
 
 
     @classmethod
-    def DisplayAllPaths(cls, paths):
+    def DisplayPaths(cls, paths):
         """
 
-        :param paths: A list include all possible paths.
-        :return: Pint all possible paths.
+        :param paths: A list of paths.
+        :return: Pint all paths.
         """
         for path in paths:
             path = [StationInfo.GetNameFromID(id) for id in path]
-            print("------One possible path------")
+            print("------Path Found------")
             print(f"{"-->".join(path)}\n")
         return
 
@@ -64,18 +64,10 @@ class StationFinder:
         """
         shortest_paths = []
         for path in paths:
-            path = [StationInfo.GetNameFromID(id) for id in path]
             if len(shortest_paths) == 0 or len(shortest_paths[0]) == len(path):
                 shortest_paths.append(path)
             elif len(shortest_paths[0]) > len(path):
                 shortest_paths.pop()
                 shortest_paths.append(path)
         return shortest_paths
-
-    @classmethod
-    def DisplayShortestPath(cls, shortest_path):
-        for path in shortest_path:
-            print("------Shortest path------")
-            print(f"{"-->".join(path)}\n")
-        return
 
