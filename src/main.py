@@ -1,14 +1,13 @@
-# Load file
-## Import StationInfo from LoadData
-## Import StationFinder from PathFinder
+# Import StationInfo from LoadData
+# Import StationFinder from PathFinder
 from LoadData import StationInfo
 from PathFinder import StationFinder
 
 
 if __name__ == "__main__":
-    ## Find the path of the file, here the file is stations.txt, you can change the path of your own stations file.
+    # Find the path of the file, here the file is stations.txt, you can change the path of your own stations file.
     filename = "/Users/fanfan/Downloads/200-Learning/250-Com/Pycharm/pythonProject/LondonTube/stations.txt"
-    ## Pass the file to StationInfo to convert the txt file to dictionary
+    # Pass the file to StationInfo to convert the txt file to dictionary
     StationInfo.LoadData(filename)
     while True:
         # Collect user from_station and to_station from UI input
@@ -19,16 +18,18 @@ if __name__ == "__main__":
         if from_station not in StationInfo.GetNameIDDict() or to_station not in StationInfo.GetNameIDDict():
             print(f"Your station input is not correct, try to input again.")
             continue
-        ## Use StationFinder to find the path
+        # Use StationFinder to find the path
         paths = StationFinder.GetPaths(from_station, to_station)
         if paths:
-            StationFinder.DisplayAllPaths(paths)
+            print("--------All Possible Paths--------")
+            StationFinder.DisplayPaths(paths)
             shortest_path = StationFinder.ShortestPath(paths)
-            StationFinder.DisplayShortestPath(shortest_path)
+            print("--------Shortest Path--------")
+            StationFinder.DisplayPaths(shortest_path)
         else:
             print("Sorry, no path found.")
 
-        ## Ask if the user want to find another path
+        # Ask if the user want to find another path
         if_continue = input("Would you like to use our service again? Yes or No:\n").lower()
         if if_continue == "no":
             break
