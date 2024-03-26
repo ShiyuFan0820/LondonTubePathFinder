@@ -3,12 +3,13 @@
 ## Import StationFinder from PathFinder
 from LoadData import StationInfo
 from PathFinder import StationFinder
-## Find the path of the file, here the file is stations.txt, you can change the path of your own stations file.
-filename = "/Users/fanfan/Downloads/200-Learning/250-Com/Pycharm/pythonProject/LondonTube/stations.txt"
-## Pass the file to StationInfo to convert the txt file to dictionary
-StationInfo.LoadData(filename)
+
 
 if __name__ == "__main__":
+    ## Find the path of the file, here the file is stations.txt, you can change the path of your own stations file.
+    filename = "/Users/fanfan/Downloads/200-Learning/250-Com/Pycharm/pythonProject/LondonTube/stations.txt"
+    ## Pass the file to StationInfo to convert the txt file to dictionary
+    StationInfo.LoadData(filename)
     while True:
         # Collect user from_station and to_station from UI input
         from_station = input("Where is your start station? (Example input: AldgateEast): \n" )
