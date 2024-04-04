@@ -16,4 +16,5 @@ To use the Shortest Path In London Underground system, simply follow these steps
 3. Run the `main.py` script, get results output according to prompt input.
 4. Run `UIVersion` to display the UI.
 5. **Customization Options:** According to the format of the `stations.txt` file, replace it with your own file and you can get your own shortest path finding system, when running `UIVersion`, font, font colour, and background picture and be replaced.
+6. I also recorded some issues and made some notes when I was doing this project, please check folder `Notes`.
 
