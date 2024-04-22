@@ -66,6 +66,8 @@ class TestStationInfo(unittest.TestCase):
         self.assertEqual(test_trai_neis_2, self.m_test_trai_neis_2)
         self.assertEqual(test_trai_neis_3, self.m_test_trai_neis_3)
 
+
+# Test if StationFinder works well
 class testStationFinder(unittest.TestCase):
     def setUp(self):
         self.m_file = "/Users/fanfan/Downloads/200-Learning/250-Com/Pycharm/pythonProject/LondonTube/stations.txt"
