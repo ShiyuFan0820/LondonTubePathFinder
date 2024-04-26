@@ -9,10 +9,10 @@ This project aims to develop a station-to-station path-finding system for the Lo
 
 ## Instruction for Use
 
-To use the Shortest Path In the London Underground system, simply follow these steps:
+To use the Shortest Path In the London Underground system, follow these steps:
 
 1. Download code files in `src`.
-2. open all files with Pycharm or other code editors.
+2. Open all files with Pycharm or other code editors.
 3. Run the `main.py` script and get results output according to prompt input.
 4. Run `UIVersion` to display the UI.
 5. **Customization Options:** According to the format of the `stations.txt` file, replace it with your own file and you can get your own shortest path finding system, when running `UIVersion`, font, font colour, and background picture and be replaced.
